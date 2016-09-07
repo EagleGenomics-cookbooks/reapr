@@ -1,0 +1,7 @@
+name 'reapr'
+maintainer 'Eagle Genomics Ltd'
+maintainer_email 'chef@eaglegenomics.com'
+license 'apachev2'
+description 'Installs/Configures reapr'
+long_description 'Installs/Configures reapr'
+version '0.1.0'
