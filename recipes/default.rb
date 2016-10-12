@@ -16,3 +16,35 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+include_recipe 'apt'
+include_recipe 'build-essential'
+include_recipe 'perl'
+include_recipe 'r'
+
+package ['tar', 'make', 'cmake', 'zlib1g-dev'] do
+  action :install
+end
+
+cpan_module 'File::Spec::Link'
+
+remote_file "#{node['reapr']['install_path']}/#{node['reapr']['filename']}" do
+  source node['reapr']['url']
+  action :create_if_missing
+end
+
+execute "Untar #{node['reapr']['filename']}" do
+  command "tar -xvf #{node['reapr']['filename']}"
+  cwd node['reapr']['install_path']
+  not_if { ::File.exist?("#{node['reapr']['install_path']}/#{node['reapr']['dirname']}") }
+end
+
+execute './install.sh' do
+  cwd "#{node['reapr']['install_path']}/#{node['reapr']['dirname']}"
+  not_if { ::File.exist?("#{node['reapr']['install_path']}/#{node['reapr']['dirname']}/reapr") }
+end
+
+# this symlinks every executable in the install subdirectory to the top of the directory tree
+# so that they are in the PATH
+execute "find #{node['reapr']['install_path']}/#{node['reapr']['dirname']} -maxdepth 1 -name 'reapr*' -executable -exec ln -s {} . \\;" do
+  cwd 'usr/local/bin'
+end
