@@ -8,7 +8,7 @@ long_description 'Installs/Configures reapr'
 source_url 'https://github.com/EagleGenomics-cookbooks/reapr'
 issues_url 'https://github.com/EagleGenomics-cookbooks/reapr/issues'
 
-version '0.1.0'
+version '1.0.0'
 
 depends 'build-essential'
 depends 'apt'
