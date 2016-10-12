@@ -48,3 +48,14 @@ end
 execute "find #{node['reapr']['install_path']}/#{node['reapr']['dirname']} -maxdepth 1 -name 'reapr*' -executable -exec ln -s {} . \\;" do
   cwd 'usr/local/bin'
 end
+
+# Take the test data also
+remote_file "#{node['reapr']['install_path']}/#{node['reapr']['dirname']}/#{node['reapr']['test_data']}" do
+  source node['reapr']['test_data_url']
+  action :create_if_missing
+end
+
+execute "Untar #{node['reapr']['test_data']}" do
+  command "tar -xvf #{node['reapr']['test_data']}"
+  cwd "#{node['reapr']['install_path']}/#{node['reapr']['dirname']}"
+end 
