@@ -58,4 +58,4 @@ end
 execute "Untar #{node['reapr']['test_data']}" do
   command "tar -xvf #{node['reapr']['test_data']}"
   cwd "#{node['reapr']['install_path']}/#{node['reapr']['dirname']}"
-end 
+end
