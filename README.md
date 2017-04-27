@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/EagleGenomics-cookbooks/reapr.svg?branch=master)](https://travis-ci.org/EagleGenomics-cookbooks/reapr)
 
+NOTE: reapr build is currently failing due to this reported bug: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=860876
+
 # REAPR
 
 Description
